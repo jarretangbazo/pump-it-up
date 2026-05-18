@@ -32,7 +32,9 @@ Predict which water pumps are faulty to promote access to clean, potable water a
 ## Competition
 
 ### Problem Definition
+Using data on water pumps in Tanzania collected by Taarifa and the Tanzanian Ministry of Water, the task is to classify each pump as functional, functional needs repair, or non-functional. GitHub
 
+Predictions are based on variables about pump type, installation date, and management. The evaluation metric is classification accuracy. The training set has 59,400 observations and 41 features.
 
 **Why it matters**
 A smart understanding of which waterpoints will fail can improve maintenance operations and ensure that clean, potable water is available to communities across Tanzania.
