@@ -63,7 +63,7 @@ Using data from Taarifa and the Tanzanian Ministry of Water, predict which pumps
 ### Project Structure
 
 ```
-flu-shot-learning/
+pump-it-up/
 ├── data/
 │   ├── raw/             # Raw competition files (not committed)
 │   ├── processed/       # Cleaned and engineered datasets
