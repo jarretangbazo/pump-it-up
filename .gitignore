@@ -12,7 +12,6 @@ data/processed/
 *.feather
 *.json
 *.xlsx
-.DS_Store
 
 # Keep the folder structure but not the files
 !data/.gitkeep
@@ -28,7 +27,6 @@ models/
 *.joblib
 *.pt
 *.pth
-
 !models/.gitkeep
 
 # -----------------------------------------------------------------------------
@@ -86,6 +84,52 @@ wheels/
 # Notebook outputs (optional — remove these lines if you want outputs committed)
 # *.ipynb
 
+notebooks/archive/ 	# old script versions
+
+# -----------------------------------------------------------------------------
+# R
+# -----------------------------------------------------------------------------
+
+# renv — library folder is reproducible from renv.lock; lock file is committed
+renv/library/
+renv/staging/
+renv/sandbox/
+
+# Commit renv.lock and renv/activate.R — these are needed for reproducibility
+!renv/activate.R
+!renv.lock
+
+# RStudio project artifacts — .Rproj is committed; user-specific state is not
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# R temporary and output files
+*.Rout
+*.rdb
+*.rdx
+
+# Compiled R packages and shared objects
+*.so
+*.dll
+
+# -----------------------------------------------------------------------------
+# Word documents — committed .docx files and ghost temp files
+# -----------------------------------------------------------------------------
+
+# Ghost files created by Word/Office when a document is open (never meaningful)
+~$*.docx
+~$*.doc
+~$*.xlsx
+~$*.xls
+~$*.pptx
+~$*.ppt
+
+# All .docx files — resume and report outputs are reproducible from source
+*.docx
+*.doc
+
 # -----------------------------------------------------------------------------
 # Environment variables — may contain API keys or credentials
 # -----------------------------------------------------------------------------
@@ -117,9 +161,13 @@ Desktop.ini
 # IDEs and editors
 # -----------------------------------------------------------------------------
 
-# VS Code
-.vscode/
+# VS Code — settings.json is committed for shared interpreter config; 
+# extensions and workspace state are local
+.vscode/*
+!.vscode/settings.json
 *.code-workspace
+
+# RStudio (covered above under R section)
 
 # PyCharm / JetBrains
 .idea/
