@@ -25,7 +25,6 @@ Predict which water pumps are faulty to promote access to clean, potable water a
 - [Results and Key Findings](#results-and-key-findings)
   - [Results](#results)
   - [Key Findings](#key-findings)
-- [Decision implication: The model's primary operational value is in triaging non-functional pumps for maintenance dispatch. For the "needs repair" class, human inspection of model-flagged borderline cases (0.4 \< P(non-functional) \< 0.6) is strongly recommended.](#decision-implication-the-models-primary-operational-value-is-in-triaging-non-functional-pumps-for-maintenance-dispatch-for-the-needs-repair-class-human-inspection-of-model-flagged-borderline-cases-04--pnon-functional--06-is-strongly-recommended)
 
 
 ---
@@ -35,11 +34,10 @@ Predict which water pumps are faulty to promote access to clean, potable water a
 ### Problem Definition
 Using data on water pumps in Tanzania collected by Taarifa and the Tanzanian Ministry of Water, the task is to classify each pump as **functional**, **functional needs repair**, or **non-functional**.
 
-Predictions draw on variables including pump type, installation date, geographic location, water source characteristics and management. The evaluation metric is **classification accuracy**. 
-
-The training set has 59,400 observations and 41 features.
+Predictions draw on variables including pump type, installation date, geographic location, water source characteristics and management. The evaluation metric is **classification accuracy**. The training set has 59,400 observations and 41 features.
 
 **Why it matters**
+
 Nearly 57 million people in Tanzania rely on rural water infrastructure. A model that identifies failing pumps before communities lose access enables targeted maintenance, reduces downtime, and directs limited repair resources where they matter most. The decision this model supports: *which pumps should inspectors visit next?*
 
 ### Task
@@ -131,17 +129,16 @@ install.packages(c(
 | **Model** | **CV Accuracy** | **Notes** |
 |-------|----------|--------------|
 | Majority Class Baseline | 0.5431 | Always predicts "functional" |
-| Logistic Regression | 0.6606 | Multinomial, L2 regularized | 
-| Decision Tree | | | 
-| Random Forest (100 trees) | | | 
-| Random Forest (tuned, 300 trees) | | | 
-| XGBoost (tuned) | | | 
-| Random Forest + XGBoost (R tuned) | | | 
+| Logistic Regression | 0.6606 | Linear decision boundary | 
+| Decision Tree | 0.7389 | Single tree, depth 15 | 
+| Random Forest (100 trees) | 0.8121 | 100 trees, default parameters | 
+| Random Forest (tuned, 300 trees) | 0.8139 | Tuned via random search | 
+| XGBoost (tuned) | 0.8076 | Tuned via random search | 
 
 
 ### Key Findings
 
-What predicts pump failure?
+**What predicts pump failure?**
 
 Water quantity is the single strongest signal. Pumps reporting quantity == dry fail at a 96.9% rate. Pumps with quantity == enough are functional 65.2% of the time. This single feature accounts for ~16% of Random Forest's mean decrease in impurity — more than any geographic or structural variable.
 Geography matters, but through infrastructure patterns, not location per se. Longitude, latitude, and GPS height rank 2nd–4th in feature importance. This reflects uneven infrastructure investment across Tanzania's regions rather than a purely spatial effect. Regional-level accuracy varies substantially; inspectors in low-performing regions should be prioritised.
@@ -150,6 +147,7 @@ Construction decade shifts the functional rate from ~85% (2000s) to ~40% (1960s�
 "Functional needs repair" is the hardest class to detect (recall: 35%). At 7.3% of the training set, this minority class is underrepresented. SMOTE oversampling (via themis in R script 05) should improve recall for this class without sacrificing overall accuracy significantly.
 
 Decision implication: The model's primary operational value is in triaging non-functional pumps for maintenance dispatch. For the "needs repair" class, human inspection of model-flagged borderline cases (0.4 < P(non-functional) < 0.6) is strongly recommended.
+
 ---
 
 DrivenData. (2015). *Pump it Up: Data Mining the Water Table.* Retrieved May 10, 2026 from https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/.
