@@ -6,9 +6,6 @@
 
 Predict which water pumps are faulty to promote access to clean, potable water across Tanzania.
 
-[![Live Demo](https:/img.shields.io/badge/Live%20Demo-Streamlit-red)](https://url.streamlit.app)
-[![Competition](https:/img.shields.io/badge/DrivenData-%2366-blue)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/)
-
 ---
 <!-- omit in toc -->
 ## Table of Contents
