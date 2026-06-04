@@ -84,7 +84,8 @@ wheels/
 # Notebook outputs (optional — remove these lines if you want outputs committed)
 # *.ipynb
 
-notebooks/archive/ 	# old script versions
+# old script versions
+notebooks/archive/
 
 # -----------------------------------------------------------------------------
 # R
